@@ -1,5 +1,5 @@
 Feature: Test 2
-
+  @testtwo
   Scenario: Elemental Selenium link click on Herokuapp
 
     Given I open the herokuapp website

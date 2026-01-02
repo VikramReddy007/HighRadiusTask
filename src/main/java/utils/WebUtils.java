@@ -6,13 +6,14 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.BasePage;
 
 import java.io.File;
+import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 
 public class WebUtils {
 
     public static void waitForPageLoad() {
-        Wait<WebDriver> wait = new WebDriverWait(BasePage.driver, 10);
+        Wait<WebDriver> wait = new WebDriverWait(BasePage.driver, Duration.ofSeconds(10));
         wait.until(input -> (Function<WebDriver, Boolean>) driver -> {
             assert driver != null;
             System.out.println("Current Window State       : "

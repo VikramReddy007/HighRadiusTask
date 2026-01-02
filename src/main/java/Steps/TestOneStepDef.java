@@ -1,14 +1,10 @@
 package Steps;
 
-import io.cucumber.java.AfterStep;
-import io.cucumber.java.Before;
-import io.cucumber.java.Scenario;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import pages.TaskOne;
-import utils.WebUtils;
 
 public class TestOneStepDef {
     TaskOne taskOne = new TaskOne();

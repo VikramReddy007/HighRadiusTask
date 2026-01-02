@@ -1,25 +1,22 @@
 package pages;
 
-import Steps.TestOneStepDef;
-import io.cucumber.java.Scenario;
 import net.bytebuddy.utility.RandomString;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import utils.WebUtils;
-
-import java.util.Random;
 
 public class TaskOne extends BasePage {
 
-    @FindBy(id = "txtUsername")
+    @FindBy(name = "username")
     WebElement userName;
 
-    @FindBy(id = "txtPassword")
+    @FindBy(name = "password")
     WebElement passwordField;
 
-    @FindBy(id = "btnLogin")
+    @FindBy(xpath = "//button[normalize-space()='Login']")
     WebElement loginButton;
 
     @FindBy(id="menu_admin_viewAdminModule")
@@ -51,6 +48,7 @@ public class TaskOne extends BasePage {
         driver.get("https://opensource-demo.orangehrmlive.com/");
         WebUtils.waitForPageLoad();
         driver.manage().window().maximize();
+       WebUtils.waitForSeconds(3);
         userName.sendKeys("Admin");
         passwordField.sendKeys("admin123");
         WebUtils.waitForSeconds(2);

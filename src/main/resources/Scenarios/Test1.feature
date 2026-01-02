@@ -1,5 +1,5 @@
 Feature: Task1
-
+  @testone
   Scenario: Add user successfully
     Given Login to opensource website
     And Go to admin tab
