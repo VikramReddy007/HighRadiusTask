@@ -19,26 +19,31 @@ public class TaskOne extends BasePage {
     @FindBy(xpath = "//button[normalize-space()='Login']")
     WebElement loginButton;
 
-    @FindBy(id="menu_admin_viewAdminModule")
+    @FindBy(className="oxd-main-menu-item")
     WebElement adminLink;
 
-    @FindBy(id="btnAdd")
+    @FindBy(xpath = "//button[@type='button' and text()=' Add ']")
     WebElement addButton;
 
-    @FindBy(id="systemUser_employeeName_empName")
+    @FindBy(css = "input[placeholder='Type for hints...']")
     WebElement employeeName;
 
-    @FindBy(id="systemUser_userName")
+    @FindBy(xpath = "//div/*[contains(text(), 'Username')]/following::div/input")
     WebElement newUserName;
 
-    @FindBy(id="systemUser_password")
+    @FindBy(xpath = "//div/*[contains(text(), 'Password')]/following::div/input")
     WebElement newPassword;
 
-    @FindBy(id="systemUser_confirmPassword")
+    @FindBy(xpath = "//div/*[contains(text(), 'Confirm Password')]/following::div/input")
     WebElement confirmPassword;
 
-    @FindBy(id="btnSave")
+    @FindBy(xpath = "//button[@type='submit' and normalize-space()='Save']")
     WebElement saveButton;
+
+    @FindBy(xpath = "//div/*[contains(text(), 'User Role')]/following::div")
+    WebElement userRoleDrpDwn;
+
+
 
     public TaskOne(){
         PageFactory.initElements(driver, this);
@@ -48,7 +53,7 @@ public class TaskOne extends BasePage {
         driver.get("https://opensource-demo.orangehrmlive.com/");
         WebUtils.waitForPageLoad();
         driver.manage().window().maximize();
-       WebUtils.waitForSeconds(3);
+        WebUtils.waitForSeconds(3);
         userName.sendKeys("Admin");
         passwordField.sendKeys("admin123");
         WebUtils.waitForSeconds(2);
@@ -70,11 +75,19 @@ public class TaskOne extends BasePage {
     }
 
     public void enterUserDetails() {
-        employeeName.sendKeys("David Morris");
+        employeeName.sendKeys("Ranga Akunuri");
         newUserName.sendKeys("newUser"+ RandomString.make(3));
         newPassword.sendKeys("passwordUser1");
         confirmPassword.sendKeys("passwordUser1");
         WebUtils.waitForSeconds(3);
+        driver.findElement(By.xpath("//div/*[contains(text(), 'User Role')]/following::div")).click();
+        WebUtils.waitForSeconds(1);
+        driver.findElement(By.xpath("//div/*[contains(text(), 'User Role')]/following::div[@role='listbox']//div[@role='option']//*[text()='Admin']")).click();
+        WebUtils.waitForSeconds(1);
+        driver.findElement(By.xpath("//div/*[contains(text(), 'Status')]/following::div")).click();
+        WebUtils.waitForSeconds(1);
+        driver.findElement(By.xpath("//div/*[contains(text(), 'Status')]/following::div[@role='listbox']//div[@role='option']//*[text()='Enabled']")).click();
+        WebUtils.waitForSeconds(1);
         WebUtils.highlightElement(saveButton);
         saveButton.click();
         WebUtils.waitForPageLoad();
